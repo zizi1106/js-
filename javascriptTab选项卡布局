@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡布局</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .news{
+            width: 500px;
+            margin: 30px auto;
+            border: solid 1px #666;
+        }
+        .title{
+            height: 30px;
+            font: 14px/30px "Microsoft YaHei","微软雅黑";
+            border-bottom: solid 1px #666;
+        }
+        .title li{
+            float: left;
+        }
+        .title a{
+            display: inline-block;
+            height: 30px;
+            padding: 0 15px;
+            color: #666;
+        }
+        .title .active{
+            background-color: yellowgreen;
+        }
+        
+        .content{
+            display: none;
+        }
+        .content_box .active{
+            display: block;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+	<!--最外面一个大盒子start-->
+    <div class="news">
+    	
+    	<!--里面的上面一个盒子放按钮start-->
+        <ul class="title" id="title">
+            <li class="active"><a href="#">图片</a></li>
+            <li><a href="#">专栏</a></li>
+            <li><a href="#">热点</a></li>
+        </ul>
+        <!--里面的上面一个盒子放按钮end-->
+        
+        <!--下面一个盒子放content_box，上下个数对应start-->
+        <div class="content_box" id="content_box">
+        	
+            <div class="content active">
+                1
+            </div>
+            <div class="content">
+                2
+            </div>
+            <div class="content">
+                3
+            </div>
+            
+        </div>
+         <!--下面一个盒子放content_box，上下个数对应end-->
+        
+<!--        <p>....</p>-->
+    </div>
+     <!--最外面一个大盒子end-->
+    <script>
+        var oUl = document.getElementById('title');
+        var aLi = oUl.getElementsByTagName('li');
+        var oDiv = document.getElementById('content_box');
+        var aDiv = oDiv.getElementsByTagName('div');
+        
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function (){
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className = '';
+                    aDiv[i].className = 'content';
+                }
+                this.className = 'active';
+                aDiv[this.index].className = 'content active';
+            }
+        } 
+    </script>
+</body>
+</html>
